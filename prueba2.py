@@ -126,12 +126,13 @@ class Huffman:
 
             #Obtenim la cadena de 1 i 0 del nostre text d'input
 			encoded_text = self.get_encoded_text(text)
-			code = open("code.txt", "w")
-			code.write(encoded_text)
-			code.close()
+
+			#Garantitzem que el codi de 1 i 0 és de longitud multiple de 8
 			padded_encoded_text = self.pad_encoded_text(encoded_text)
 			
+			#construim la byte array corresponent al padded code
 			b = self.get_byte_array(padded_encoded_text)
+			
 			output.write(bytes(b))
 
 		return output_path
