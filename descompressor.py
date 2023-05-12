@@ -4,22 +4,17 @@ import time
 from Huffman import Huffman
 
 start = time.time()
-huff = Huffman(sys.argv[1])
+fileName = sys.argv[1] + '.txt'
+fileDecompress = sys.argv[1] + '.cdi'
+if os.name == 'nt': #si estem a windows hem d'afegir .\ per al nom del fitxer
+    fileName = ".\\" + fileName
+    fileDecompress = ".\\" + fileDecompress
+
+huff = Huffman(fileName)
 output_path = huff.comprimir()
-sizefile = os.stat("quijote_clean.cdi").st_size
-print("Tamaño archivo comprimido:", sizefile, "Bytes")
-print("Num de caracteres unicode original:", len(open(sys.argv[1], "r+").read()))
-print("Bits per simbol", (8 * sizefile) / len(open(sys.argv[1], "r+").read()))
+huff.decompress(fileDecompress)
+# sizefile = os.stat(fileDecompress).st_size
 
 end = time.time()
 
 print("Temps total:", end - start)
-
-
-
-path = "quijote_clean.txt"
-h = Huffman(path)
-
-output_path = h.comprimir()
-
-decom_path = h.decompress(output_path)

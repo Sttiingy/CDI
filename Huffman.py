@@ -153,8 +153,8 @@ class Huffman:
 
 		for bit in encoded_text:
 			current_code += bit
-			if(current_code in self.reverse_mapping):
-				character = self.reverse_mapping[current_code]
+			if(current_code in self.reverseMap):
+				character = self.reverseMap[current_code]
 				decoded_text += character
 				current_code = ""
 
@@ -163,7 +163,7 @@ class Huffman:
 
 	def decompress(self, input_path):
 		filename, file_extension = os.path.splitext(self.path)
-		output_path = filename + "_decompressed" + ".txt"
+		output_path = filename + "-desc" + ".txt"
 
 		with open(input_path, 'rb') as file, open(output_path, 'w') as output:
 			bit_string = ""
