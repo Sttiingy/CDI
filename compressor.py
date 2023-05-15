@@ -15,8 +15,8 @@ huff = Huffman(fileName)
 output_path = huff.comprimir()
 sizefile = os.stat(fileDecompress).st_size
 print("Tamaño archivo comprimido:", sizefile, "Bytes")
-print("Num de caracteres unicode original:", len(open(fileName, "r+").read()))
-print("Bits per simbol", (8 * sizefile) / len(open(fileName, "r+").read()))
+print("Num de caracteres unicode original:", len(open(fileName, encoding="utf8").read()))
+print("Bits per simbol", (8 * sizefile) / len(open(fileName, encoding="utf8").read()))
 
 end = time.time()
 

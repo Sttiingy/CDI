@@ -111,7 +111,7 @@ class Huffman:
 		output_path = filename + ".cdi"
 
         #LLegim el fitxer i definim el output com a wb(Write binary)
-		with open(self.path, 'r+') as file, open(output_path, 'wb') as output:
+		with open(self.path, encoding="utf8") as file, open(output_path, 'wb') as output:
 			text = file.read()
 			text = text.rstrip()
 
@@ -165,7 +165,7 @@ class Huffman:
 		filename, file_extension = os.path.splitext(self.path)
 		output_path = filename + "-desc" + ".txt"
 
-		with open(input_path, 'rb') as file, open(output_path, 'w') as output:
+		with open(input_path, 'rb') as file, open(output_path, 'w', encoding="utf-8") as output:
 			bit_string = ""
 
 			byte = file.read(1)
