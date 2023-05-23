@@ -162,18 +162,17 @@ class Huffman:
 	def decompress(self, inputPath):
 		filename, fileExtension = os.path.splitext(self.path)
 		outputPath = filename + "-desc" + ".txt"
-
+		with open(inputPath, 'rb') as fileMap:
+			text = fileMap.read()
+			print(text)
 		with open(inputPath, 'rb') as file, open(outputPath, 'w', encoding="utf-8") as output:
 			bitString = ""
-
 			byte = file.read(1)
-			print(byte)
 			while(len(byte) > 0):
 				byte = ord(byte)
 				bits = bin(byte)[2:].rjust(8, '0')
 				bitString += bits
 				byte = file.read(1)
-
 			encodedText = self.removePadding(bitString)
 
 			decompressedText = self.decodeText(encodedText)
@@ -190,7 +189,6 @@ if os.name == 'nt': #si estem a windows hem d'afegir .\ per al nom del fitxer
     fileDecompress = ".\\" + fileDecompress
 
 huff = Huffman(fileName)
-outputPath = huff.comprimir()
 huff.decompress(fileDecompress)
 
 end = time.time()

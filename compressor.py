@@ -101,6 +101,12 @@ class Huffman:
 			byte = paddedEncodedText[i:i+8]
 			b.append(int(byte, 2))
 		return b
+	
+	def insertMap(filename, line):
+		with open(filename, 'r+') as f:
+			content = f.read()
+			f.seek(0, 0)
+			f.write(line.rstrip('\r\n') + '\n' + content)
 
 
 	def comprimir(self):
@@ -130,9 +136,11 @@ class Huffman:
 			
 			#construim la byte array corresponent al padded code
 			b = self.obtenirByteArray(paddedEncodedText)
-			
+			mapp = str(self.reverseMap)	
+			b2 = bytearray()
+			b2.extend(map(ord, mapp))
+			b = b2 + b
 			output.write(bytes(b))
-
 		return outputPath
 	
 
