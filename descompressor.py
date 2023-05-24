@@ -164,15 +164,20 @@ class Huffman:
 		outputPath = filename + "-desc" + ".txt"
 		with open(inputPath, 'rb') as fileMap:
 			text = fileMap.read()
-			print(text)
+
 		with open(inputPath, 'rb') as file, open(outputPath, 'w', encoding="utf-8") as output:
 			bitString = ""
+			string_data = file.readline().decode('latin-1').rstrip('\r\n')
 			byte = file.read(1)
-			while(len(byte) > 0):
+
+			print(string_data)
+			while(byte):
 				byte = ord(byte)
 				bits = bin(byte)[2:].rjust(8, '0')
 				bitString += bits
 				byte = file.read(1)
+
+
 			encodedText = self.removePadding(bitString)
 
 			decompressedText = self.decodeText(encodedText)
