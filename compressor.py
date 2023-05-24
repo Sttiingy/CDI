@@ -2,6 +2,7 @@ import sys
 import os
 import heapq
 import time
+import json
 
 class Huffman:
 	def __init__(self, path):
@@ -129,7 +130,8 @@ class Huffman:
 			
 			#construim la byte array corresponent al padded code
 			b = self.obtenirByteArray(paddedEncodedText)
-			mapString = str(self.reverseMap)	
+			mapString = str(json.dumps(self.reverseMap))
+			mapString = mapString + "\n"
 			output.write(mapString.encode('latin-1'))
 			output.write(bytes(b))
 		return outputPath

@@ -2,6 +2,7 @@ import sys
 import os
 import heapq
 import time
+import json
 
 class Huffman:
 	def __init__(self, path):
@@ -167,11 +168,12 @@ class Huffman:
 
 		with open(inputPath, 'rb') as file, open(outputPath, 'w', encoding="utf-8") as output:
 			bitString = ""
-			string_data = file.readline().decode('latin-1').rstrip('\r\n')
-			byte = file.read(1)
+			mapString = file.readline().decode('latin-1').rstrip('\r\n')
+			self.reverseMap = json.loads(mapString)
+			file.readline()
 
-			print(string_data)
-			while(byte):
+			byte = file.read(1)
+			while(len(byte) > 0):
 				byte = ord(byte)
 				bits = bin(byte)[2:].rjust(8, '0')
 				bitString += bits
