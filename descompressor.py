@@ -170,7 +170,6 @@ class Huffman:
 			bitString = ""
 			mapString = file.readline().decode('latin-1').rstrip('\r\n')
 			self.reverseMap = json.loads(mapString)
-			file.readline()
 
 			byte = file.read(1)
 			while(len(byte) > 0):
@@ -189,13 +188,11 @@ class Huffman:
 		return outputPath
 
 start = time.time()
-fileName = sys.argv[1] + '.txt'
 fileDecompress = sys.argv[1] + '.cdi'
 if os.name == 'nt': #si estem a windows hem d'afegir .\ per al nom del fitxer
-    fileName = ".\\" + fileName
     fileDecompress = ".\\" + fileDecompress
 
-huff = Huffman(fileName)
+huff = Huffman(fileDecompress)
 huff.decompress(fileDecompress)
 
 end = time.time()
